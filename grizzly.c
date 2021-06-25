@@ -106,6 +106,10 @@ void brute(int M, int N, char *sym[M][N], int hint_n, hint_ptr *hint) {
           case '<': return col(0) >= col(1);
           case '>': return col(0) <= col(1);
           case '1': return col(0) + 1 != col(1);
+          case '2': return col(0) + 2 != col(1);
+          case '3': return col(0) + 3 != col(1);
+          case '4': return col(0) + 4 != col(1);
+          case '5': return col(0) + 5 != col(1);
           case 'A': return abs(col(0) - col(1)) != 1;
           case 'i':
             F(n, N) if (has(0, n)) {
@@ -188,6 +192,10 @@ void per_col_dlx(int M, int N, char *sym[M][N], int hint_n, hint_ptr *hint) {
           case '=': return match(h) == 1;
           case '<':
           case '1':
+          case '2':
+          case '3':
+          case '4':
+          case '5':
           case 'A':
           case '!': return match(h) > 1;
           case 'i': return has(h, 0) && (match(h) | 2) != 2;
@@ -215,6 +223,54 @@ void per_col_dlx(int M, int N, char *sym[M][N], int hint_n, hint_ptr *hint) {
             if (has(h, 0)) {
               F(k, N) {
                 if (k == a[0] + 1) continue;
+                dlx_set(dlx, dlxM, h->dlx_col + k);
+              }
+            }
+            if (has(h, 1)) {
+              dlx_set(dlx, dlxM, h->dlx_col + a[0]);
+            }
+            break;
+          case '2':
+            assign_dlx_col(h);
+            if (has(h, 0)) {
+              F(k, N) {
+                if (k == a[0] + 2) continue;
+                dlx_set(dlx, dlxM, h->dlx_col + k);
+              }
+            }
+            if (has(h, 1)) {
+              dlx_set(dlx, dlxM, h->dlx_col + a[0]);
+            }
+            break;
+          case '3':
+            assign_dlx_col(h);
+            if (has(h, 0)) {
+              F(k, N) {
+                if (k == a[0] + 3) continue;
+                dlx_set(dlx, dlxM, h->dlx_col + k);
+              }
+            }
+            if (has(h, 1)) {
+              dlx_set(dlx, dlxM, h->dlx_col + a[0]);
+            }
+            break;
+          case '4':
+            assign_dlx_col(h);
+            if (has(h, 0)) {
+              F(k, N) {
+                if (k == a[0] + 4) continue;
+                dlx_set(dlx, dlxM, h->dlx_col + k);
+              }
+            }
+            if (has(h, 1)) {
+              dlx_set(dlx, dlxM, h->dlx_col + a[0]);
+            }
+            break;
+          case '5':
+            assign_dlx_col(h);
+            if (has(h, 0)) {
+              F(k, N) {
+                if (k == a[0] + 5) continue;
                 dlx_set(dlx, dlxM, h->dlx_col + k);
               }
             }
